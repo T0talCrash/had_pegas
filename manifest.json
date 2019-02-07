@@ -1,0 +1,81 @@
+{
+	"name": "Плагин \"Пегас\"",
+	"version": "1.2",
+	"description": "",
+
+	"permissions": [
+		"storage",
+		"tabs",
+		"*://haddan.ru/*",
+		"*://www.haddan.ru/*"
+	],
+	"background":
+	{
+		"scripts": [
+			"background.js"
+		]
+	},
+	"browser_action":
+	{
+		"default_icon":
+		{
+			"16": "images/pegas16.png",
+			"32": "images/pegas32.png",
+			"48": "images/pegas48.png",
+			"128": "images/pegas128.png"
+		}
+	},
+	"icons":
+	{
+		"16": "images/pegas16.png",
+		"32": "images/pegas32.png",
+		"48": "images/pegas48.png",
+		"128": "images/pegas128.png"
+	},
+	"content_scripts": [
+	{
+		"all_frames": true,
+		"css": [ "info.css" ],
+		"matches": [
+			"*://haddan.ru/battle/btl.php*",
+			"*://www.haddan.ru/battle/btl.php*",
+
+			"*://haddan.ru/room/room.php*",
+			"*://www.haddan.ru/room/room.php*",
+
+			"*://online-igra.ru/battle/btl.php*",
+			"*://www.online-igra.ru/battle/btl.php*",
+
+			"*://online-igra.ru/room/room.php*",
+			"*://www.online-igra.ru/room/room.php*"
+		],
+		"js": ["main.js"],
+		"run_at": "document_end"
+	},
+	{
+		"all_frames": true,
+		"css": [ "lab.css" ],
+		"matches": [
+			"*://haddan.ru/room/mazemap.php*",
+			"*://www.haddan.ru/room/mazemap.php*",
+
+			"*://online-igra.ru/room/mazemap.php.php*",
+			"*://www.online-igra.ru/room/mazemap.php.php*"
+		],
+		"js": ["laba.js"],
+		"run_at": "document_end"
+	},
+	{
+		"all_frames": true,
+		"matches": [
+			"*://haddan.ru/room/func/qa.php*",
+			"*://www.haddan.ru/room/func/qa.php*",
+
+			"*://online-igra.ru/room/func/qa.php.php*",
+			"*://www.online-igra.ru/room/func/qa.php.php*"
+		],
+		"js": ["qa.js"],
+		"run_at": "document_end"
+	}],
+	"manifest_version": 2
+}
