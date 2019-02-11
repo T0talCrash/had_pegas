@@ -123,6 +123,23 @@ if (document.querySelector('title').innerHTML != "Бой" && document.querySelec
 			{
 				rightarrow = roomnpcs[i];
 			}
+			else if (roomnpcs[i].alt == "На юг")
+			{
+				downarrow = roomnpcs[i];
+			}
+			else if (roomnpcs[i].alt == "На север")
+			{
+				uparrow = roomnpcs[i];
+			}
+			else if (roomnpcs[i].alt == "На запад")
+			{
+				leftarrow = roomnpcs[i];
+			}
+			else if (roomnpcs[i].alt == "На восток")
+			{
+				rightarrow = roomnpcs[i];
+			}
+
 		}
 	}
 }
@@ -155,123 +172,124 @@ var pickUpStuff = () => {
 		return
 	}
 	waitingsince = 0;
-	document.querySelector('a[href*="takeThing"').click();
+	//document.querySelector('a[href*="takeThing"').click();
 }
 
 function hotKeys(event)
 {
-    if (event.keyCode == 32 || event.keyCode == 13 || event.keyCode == 96)
-    {
-        if (document.querySelector("#fight_finish_block").style.display == "block" || document.querySelector("#fight_finish_live_block").style.display == "block")
-        {
-            document.location.href = '/room/room.php';
-        }
-        else
-        {
-            var fight = function()
-            {
-                if ('oBattleInit' in window && !oBattleInit.aBattle[7])
-                {
-                    
-                    if (document.forms.frmMove.elements.targetCombo.options.length > 1)
-                    {
-                        document.forms.frmMove.elements.targetCombo.options.selectedIndex++
-                    }
-                    if (document.forms.frmMove.elements.targetCombo.options.selectedIndex == -1)
-                    {
-                        document.forms.frmMove.elements.targetCombo.options.selectedIndex = 0
-                    }
-                    var safe_c = 0;
-                    var myBlocks = {};
+	if (event.keyCode == 32 || event.keyCode == 13 || event.keyCode == 96)
+	{
+		if (document.querySelector("#fight_finish_block").style.display == "block" || document.querySelector("#fight_finish_live_block").style.display == "block")
+		{
+			document.location.href = '/room/room.php';
+		}
+		else
+		{
+			var fight = function()
+			{
+				if ('oBattleInit' in window && !oBattleInit.aBattle[7])
+				{
+					
+					if (document.forms.frmMove.elements.targetCombo.options.length > 1)
+					{
+						document.forms.frmMove.elements.targetCombo.options.selectedIndex++
+					}
+					if (document.forms.frmMove.elements.targetCombo.options.selectedIndex == -1)
+					{
+						document.forms.frmMove.elements.targetCombo.options.selectedIndex = 0
+					}
+					var safe_c = 0;
+					var myBlocks = {};
 
-                    var rand = (min, max) => {return Math.round(min - 0.5 + Math.random() * (max - min + 1))}
-                    var sBlk = () => 
-                    {
-                        let nextBlock = rand(1,5);
-                        console.log(nextBlock)
+					var rand = (min, max) => {return Math.round(min - 0.5 + Math.random() * (max - min + 1))}
+					var sBlk = () => 
+					{
+						let nextBlock = rand(1,5);
+						console.log(nextBlock)
 
-                        if (!myBlocks[nextBlock])
-                        {
-                            blk_s(nextBlock);
-                            myBlocks[nextBlock] = true
-                        }
-                        else if (safe_c < 25)
-                        {
-                            sBlk()
-                        }
-                        safe_c++
-                    }
+						if (!myBlocks[nextBlock])
+						{
+							blk_s(nextBlock);
+							myBlocks[nextBlock] = true
+						}
+						else if (safe_c < 25)
+						{
+							sBlk()
+						}
+						safe_c++
+					}
 
+					if ( document.querySelector('#hittitle2') != null )
+					{
+						let nextHit = rand(1,5);
+						kill_s(nextHit);
+						nextHit = rand(5,10);
+						kill_s(nextHit);
+					} else {
+						let hitc = document.querySelector('sup#ac').innerHTML
+						if (hitc == "1")
+						{
+							let nextHit = rand(1,5);
+							kill_s(nextHit);
+						}
+					}
 
+					for (var i = 0, len = parseInt(document.querySelector('sup#bc').innerHTML); i < len; i++) 
+					{
+						sBlk();              
+					}
 
-                    for (var i = 0, len = parseInt(document.querySelector('sup#ac').innerHTML); i < len; i++) 
-                    {
-                        let nextHit = rand(1,5);
-                        if (i == 1)
-                        {
-                            nextHit = rand(5,10);
-                        }
-                        kill_s(nextHit);
-                    }
+					submitMove();
+				}
 
-
-
-                    for (var i = 0, len = parseInt(document.querySelector('sup#bc').innerHTML); i < len; i++) 
-                    {
-                        sBlk();              
-                    }
-
-                    submitMove();
-                }
-
-            }
-            injectCode(fight);
-        }
-    }
-    else if ( event.keyCode == 37)
-    {
-        if (leftarrow != '')
-        {
-            leftarrow.parentNode.click()
-        }
-    }
-    else if ( event.keyCode == 38)
-    {
-        if (uparrow != '')
-        {
-            uparrow.parentNode.click()
-        }
-    }
-    else if ( event.keyCode == 39)
-    {
-        if (rightarrow != '')
-        {
-            rightarrow.parentNode.click()
-        }
-    }
-    else if ( event.keyCode == 40)
-    {
-        if (downarrow != '')
-        {
-            downarrow.parentNode.click()
-        }
-    }
+			}
+			injectCode(fight);
+		}
+	}
+	else if ( event.keyCode == 37)
+	{
+		if (leftarrow != '')
+		{
+			leftarrow.parentNode.click()
+		}
+	}
+	else if ( event.keyCode == 38)
+	{
+		if (uparrow != '')
+		{
+			uparrow.parentNode.click()
+		}
+	}
+	else if ( event.keyCode == 39)
+	{
+		if (rightarrow != '')
+		{
+			rightarrow.parentNode.click()
+		}
+	}
+	else if ( event.keyCode == 40)
+	{
+		if (downarrow != '')
+		{
+			downarrow.parentNode.click()
+		}
+	}
 }
 
 
 
 function injectCode(code)
 {
-    var oti = document.createElement("script");
-    var codeToInject = String(code);
-    //codeToInject.split("\u21b5").join(''); //split+join
-    codeToInject.replace(/\u21b5/g, ''); //RegExp with unicode point
+	var oti = document.createElement("script");
+	var codeToInject = String(code);
+	//codeToInject.split("\u21b5").join(''); //split+join
+	codeToInject.replace(/\u21b5/g, ''); //RegExp with unicode point
 
-    oti.innerHTML = "new " + codeToInject;
+	oti.innerHTML = "new " + codeToInject;
 
-    oti.id = 'codeInject';
-    document.head.appendChild(oti);
-    oti.parentNode.removeChild(oti);
+	oti.id = 'codeInject';
+	document.head.appendChild(oti);
+	oti.parentNode.removeChild(oti);
 }
 
 var checkStashes = () => 
@@ -287,7 +305,7 @@ var checkStashes = () =>
 			let tmp2 = npc_link.indexOf('&rnid=')
 			let npc_id = npc_link.substring(tmp+7, tmp2);
 
-			if (npc_id == -77 || npc_id == -78 || npc_id == -79)
+			if (npc_id == -77 || npc_id == -78 || npc_id == -79 || npc_id == -338)
 			{
 				let npc_uniid = npc_link.substring(tmp2+6);
 				if (arr_stashes.indexOf(npc_uniid) == -1)
