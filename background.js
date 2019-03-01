@@ -66,6 +66,7 @@ chrome.runtime.onMessage.addListener(
 				case "send_stashes":
 					if (request.stash > 1 && arr_stashes.indexOf(request.stash) == -1)
 					{
+						resetLabMap();
 						arr_stashes.push(request.stash)
 					}
 
@@ -145,8 +146,7 @@ function resetLabMap()
 		lab_map.reset_time = rlm_t + 1;
 
 		if (rlm_t == 3) lab_map.reset_time = 1
-			else lab_map.reset_time = rlm_t + 1; 
-
+		else lab_map.reset_time = rlm_t + 1;
 	}
 }
 
