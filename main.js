@@ -107,19 +107,19 @@ if (document.querySelector('title').innerHTML != "Бой" && document.querySelec
 	else if ( roomnpcs.length > 0)
 	{
 		for (var i = roomnpcs.length - 1; i >= 0; i--) {
-			if (roomnpcs[i].src == "http://haddan.ru/@!images/rooms/a35-12_40x40.png")
+			if (roomnpcs[i].src.indexOf("/@!images/rooms/a35-12_40x40.png") != -1)
 			{
 				downarrow = roomnpcs[i];
 			}
-			else if (roomnpcs[i].src == "http://haddan.ru/@!images/rooms/a35-10_40x40.png")
+			else if (roomnpcs[i].src.indexOf("/@!images/rooms/a35-10_40x40.png") != -1)
 			{
 				uparrow = roomnpcs[i];
 			}
-			else if (roomnpcs[i].src == "http://haddan.ru/@!images/rooms/a35-01_40x40.png")
+			else if (roomnpcs[i].src.indexOf("/@!images/rooms/a35-01_40x40.png") != -1)
 			{
 				leftarrow = roomnpcs[i];
 			}
-			else if (roomnpcs[i].src == "http://haddan.ru/@!images/rooms/a35-21_40x40.png")
+			else if (roomnpcs[i].src.indexOf("/@!images/rooms/a35-21_40x40.png") != -1)
 			{
 				rightarrow = roomnpcs[i];
 			}
