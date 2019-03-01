@@ -1,6 +1,5 @@
 "use strict";
 
-
 if (document.querySelector("a"))
 {
 	if (document.querySelector('a[href*="&tt="')) document.querySelector('a[href*="&tt="').click()
