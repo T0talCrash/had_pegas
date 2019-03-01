@@ -172,7 +172,7 @@ var pickUpStuff = () => {
 		return
 	}
 	waitingsince = 0;
-	//document.querySelector('a[href*="takeThing"').click();
+	document.querySelector('a[href*="takeThing"').click();
 }
 
 function hotKeys(event)
@@ -223,7 +223,7 @@ function hotKeys(event)
 					{
 						let nextHit = rand(1,5);
 						kill_s(nextHit);
-						nextHit = rand(5,10);
+						nextHit = rand(6,10);
 						kill_s(nextHit);
 					} else {
 						let hitc = document.querySelector('sup#ac').innerHTML
