@@ -10,6 +10,9 @@ var arr_stashes = [];
 top.document.onkeyup = hotKeys;
 document.onkeyup = hotKeys;
 
+
+// <a class="bright" href="/room/room.php?id=18612224" onclick="return confirm('Если вы сейчас выйдете из Лабиринта, то потеряете ВСЕ вещи, которые вы нашли в Лабиринте. Вы действительно хотите выйти из Лабиринта?')">в Лабиринт Древних Руин</a>
+
 if (document.querySelector('title').innerHTML != "Бой" && document.querySelector('.fightbody') == undefined)
 {
 	var s = /g_room.{0,3}\'([\d]*)\';/i.exec(document.querySelectorAll('script')[8].innerHTML); 
